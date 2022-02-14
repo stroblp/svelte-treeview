@@ -1,11 +1,11 @@
 <script>
+	import { writable } from "svelte/store";
 	export let id;
-	export let label = "test";
+	export let label = "No Label";
 	export let parentNodeState;
-	export let currentNodeState;
-	export let nodeCollapsed;
+	export let currentNodeState = writable(false);
+	export let nodeExpanded = undefined;
 
-	console.log(parentNodeState);
 	parentNodeState.subscribe((value) => {
 		$currentNodeState = value;
 		console.log(value);
@@ -13,10 +13,13 @@
 </script>
 
 <div class="main">
-	<input type="checkbox" bind:checked={$nodeCollapsed} />
+	{#if nodeExpanded}
+		<input type="checkbox" bind:checked={$nodeExpanded} />
+	{/if}
 	<input type="checkbox" {id} bind:checked={$currentNodeState} />
 	<label for={id}>{label}</label>
 </div>
+<slot controlChecked={$currentNodeState} />
 
 <style>
 	label {

@@ -1,41 +1,58 @@
 <script>
-    import {writable} from "svelte/store"
-        export let tree;
-        let currentNodeState =writable (false);
-        let nodeCollapsed = writable(false);
-        export let parentNodeState=writable (false);
-    </script>
-    
-    <ul>
-        {#if tree.children}
-        <li>
-                <svelte:component uuid={tree.uuid} label={tree.label} {currentNodeState} {parentNodeState} {nodeCollapsed} this={tree.component}/>
+    import { writable } from "svelte/store";
+    import TreeControls from "./TreeControls.svelte";
+    import TestSlotted from "./TestSlotted.svelte";
+    export let parentNodeState = writable(false);
+    export let tree;
+    export let level =0;
+    let currentNodeState = writable(false);
+    let nodeExpanded = writable(true);
+</script>
+
+<ul class:root = {level===0}>
+    {#if tree.children}
+        <li c>
+            <TreeControls
+                id={tree.id}
+                label={tree.label}
+                {currentNodeState}
+                {parentNodeState}
+                {nodeExpanded}
+            />
         </li>
-        <li class ="collapsable" class:collapsed ={$nodeCollapsed}>
+        <li class="expandable" class:expanded={$nodeExpanded}>
             {#each tree.children as child}
-                <svelte:self parent ={tree.uuid} tree={child} parentNodeState={currentNodeState}/>
+                <svelte:self
+                    parent={tree.id}
+                    tree={child}
+                    parentNodeState={currentNodeState}
+                    level={level+1}
+                />
             {/each}
         </li>
-    
     {:else}
         <li>
-    <!-- 		{$parentNodeState}
-    {$currentNodeState} -->
-                <svelte:component uuid={tree.uuid} label={tree.label} this={tree.component} itemState={parentNodeState}/>
+            <TreeControls id={tree.id} label={tree.label} {parentNodeState} let:controlChecked>
+                <svelte:component {controlChecked} this={TestSlotted} />
+            </TreeControls>
         </li>
     {/if}
-    </ul>
-    
-    <style>
-        .collapsable{
-            display:block;
-        }
-        .collapsable.collapsed{
-            display:none;
-        }	
-      ul {
-        list-style-type: none;
-        padding-left: 20px;
+</ul>
+
+<style>
+    .expandable.expanded {
         display: block;
-      }
-    </style>
+    }
+    .expandable {
+        display: none;
+    }
+    ul {
+        list-style-type: none;
+        padding-left: 30px;
+    }
+    ul.root {
+        list-style-type: none;
+        padding-left: 0px;
+    }
+    
+</style>
