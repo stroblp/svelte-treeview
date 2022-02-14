@@ -1,2 +1,2 @@
-# A Svelte treeview component
+# A Svelte collapsable treeview component
 
