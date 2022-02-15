@@ -13,8 +13,7 @@
     {#if tree.children}
         <li c>
             <TreeControls
-                id={tree.id}
-                label={tree.label}
+            props ={tree.props}
                 {currentNodeState}
                 {parentNodeState}
                 {nodeExpanded}
@@ -23,7 +22,7 @@
         <li class="expandable" class:expanded={$nodeExpanded}>
             {#each tree.children as child}
                 <svelte:self
-                    parent={tree.id}
+                    parent={tree.props.id}
                     tree={child}
                     parentNodeState={currentNodeState}
                     level={level+1}
@@ -32,8 +31,8 @@
         </li>
     {:else}
         <li>
-            <TreeControls id={tree.id} label={tree.label} {parentNodeState} let:controlChecked>
-                <svelte:component {controlChecked} this={TestSlotted} />
+            <TreeControls props ={tree.props} {parentNodeState} let:controlChecked let:props>
+                <svelte:component {controlChecked} {props} this={tree.props.component} />
             </TreeControls>
         </li>
     {/if}
