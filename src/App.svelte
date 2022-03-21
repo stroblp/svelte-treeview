@@ -1,9 +1,17 @@
 <script>
-	import Tree from "./Tree.svelte";
-	import { tree } from "./tree-data.js";
+	import Tree from "../lib/Tree.svelte";
+	import tree from "./tree-data.js";
+	import TreeItem from "./TreeItem.svelte";
+	import TreeNode from "./TreeNode.svelte";
+	import TreeRoot from "./TreeRoot.svelte";
 </script>
-<svelte:head>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</svelte:head>
 
-<Tree {tree} />
+
+
+<p>Custom componenet 1:</p>
+<TreeRoot />
+<p>Custom componenet 2:</p>
+<TreeNode />
+<p>Custom componenet 3:</p>
+<TreeItem />
+<Tree node={tree} treeName="test-tree" />

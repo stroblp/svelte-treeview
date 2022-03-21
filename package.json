@@ -13,6 +13,7 @@
     "vite": "^2.8.6"
   },
   "dependencies": {
-    "localforage": "^1.10.0"
+    "localforage": "^1.10.0",
+    "svelte-writable-persistent-store": "^1.0.2"
   }
 }
