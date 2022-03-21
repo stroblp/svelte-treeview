@@ -1,7 +1,7 @@
 {
-  "name": "svelte-app",
+  "name": "svelte-custom-treeview",
   "version": "1.0.0",
-  "private": true,
+  "svelte":"lib/Tree.svelte",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
