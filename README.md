@@ -11,7 +11,7 @@ https://stroblp.github.io/gh-pages-demo-app/#/building-floors/
 
 # install
 
-`npm i svelte-custom-treeview`
+`npm i @stroblp/svelte-treeview`
 
 Usage..
 

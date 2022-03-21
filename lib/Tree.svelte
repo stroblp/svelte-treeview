@@ -1,6 +1,6 @@
 <script>
     import { writable } from "svelte/store";
-    import writableIndexedDB from "svelte-writable-persistent-store";
+    import writableIndexedDB from "@stroblp/svelte-persistent-writable";
 
     export let treeName = "tree-view";
     export let parentNodeState = writable(false);

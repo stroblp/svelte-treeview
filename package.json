@@ -1,5 +1,5 @@
 {
-  "name": "svelte-custom-treeview",
+  "name": "@stroblp/svelte-treeview",
   "version": "1.0.0",
   "svelte":"lib/Tree.svelte",
   "scripts": {
@@ -13,7 +13,6 @@
     "vite": "^2.8.6"
   },
   "dependencies": {
-    "localforage": "^1.10.0",
-    "svelte-writable-persistent-store": "^1.0.2"
+    "@stroblp/svelte-persistent-writable": "^1.0.0"
   }
 }
