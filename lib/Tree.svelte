@@ -3,11 +3,12 @@
     import writableIndexedDB from "@stroblp/svelte-persistent-writable";
 
     export let treeName = "tree-view";
+    export let driver = "INDEXEDDB";
+    export let dbName = "svelte-tree-db";
     export let parentNodeState = writable(false);
     export let node;
     export let level = 0;
     export let parent = undefined;
-    export let driver = "INDEXEDDB";
 
     let childNodeList = writable({
         checked: new Set([]),
@@ -24,16 +25,21 @@
     let currentNodeState = writableIndexedDB(
         node.props.id + "-current-node-state",
         node.props.defaultVisible,
-        driver,
-        treeName
+        {
+            driver,
+            storeName: treeName,
+            dbName,
+        }
     );
     let nodeExpanded = writableIndexedDB(
         node.props.id + "-current-node-expansion-state",
         true,
-        driver,
-        treeName
+        {
+            driver,
+            storeName: treeName,
+            dbName,
+        }
     );
-    console.log(node.props);
 
     if (node.children) {
         let childCount = node.children.length;
@@ -76,11 +82,12 @@
         $currentNodeState = value;
     });
 </script>
+
 <svelte:head>
-	<link
-		rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-	/>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
 </svelte:head>
 <ul class:root={level === 0}>
     {#if node.children}

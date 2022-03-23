@@ -14,5 +14,8 @@ export default defineConfig({
       }
       : true
   },
-  base: "/svelte-treeview/"
+  base: "/svelte-treeview/",
+  // build:{
+  //   minify:false
+  // }
 })
