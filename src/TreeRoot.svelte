@@ -3,10 +3,19 @@
     export let props;
 </script>
 <div>
-    <label>TreeRoot Component</label>
-    <input type="checkbox" checked={controlChecked} />
+    <div class="wrapper">
+        <label>TreeItem Component</label>
+        <input type="checkbox" checked={controlChecked} />
+    </div>
+
 </div>
 <style>
+    .wrapper{
+        display: flex;
+    }
+    input[type=checkbox]{
+        align-self: flex-end;
+    }
     label{
         color:rgb(248, 81, 3)
     }

@@ -170,22 +170,26 @@
 
 <style>
     label {
-        display: flex;
-        align-items: center;
         padding-left: 2px;
         padding-right: 4px;
+    }
+    :global(input[type=checkbox]){
+        align-self: flex-end;
+        /* display:flex;
+        justify-content: center;
+        align-items: flex-end; */
     }
 
     .container {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: baseline;
     }
 
     .main {
         display: flex;
         justify-content: left;
-        align-items: center;
+        align-items: baseline;
     }
 
     .expansion-control {
